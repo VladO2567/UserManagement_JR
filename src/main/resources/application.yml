@@ -8,8 +8,8 @@ spring:
   datasource:
     name: MySQL Connection
     url: jdbc:mysql://localhost:3306/usermanagement?createDatabaseIfNotExist=true
-    username: root
-    password: Acle2567
+    username: <your_username>
+    password: <your_password>
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     show-sql: true

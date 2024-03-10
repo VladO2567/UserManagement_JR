@@ -36,7 +36,7 @@ public class UserController {
         return new ResponseEntity<>(userService.getAllDeactivated(), HttpStatus.OK);
     }
 
-    @GetMapping("/get-all-by-date/{date}")
+    @GetMapping("/get-all-by-created-at-date/{date}")
     public ResponseEntity<List<UserDTO>> getAllByDate(@PathVariable(value = "date") String dateS){
         LocalDate date = LocalDate.parse(dateS);
         return new ResponseEntity<>(userService.getAllByDate(date), HttpStatus.OK);
