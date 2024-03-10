@@ -111,3 +111,7 @@ or
 ```
 
 For Create User service complete information about the user needs to be provided.
+
+## Author
+
+- Vlado Doderović [@VladO2567](https://github.com/VladO2567)
