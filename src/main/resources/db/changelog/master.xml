@@ -5,10 +5,16 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.24.xsd">
 
-    <include file="changesets/20240309_01_schema_initialization.xml" relativeToChangelogFile="true" />
-    <include file="changesets/20240310_01_insert_grad_data.xml" relativeToChangelogFile="true" />
-    <include file="changesets/20240310_02_insert_zemlja_data.xml" relativeToChangelogFile="true" />
-    <include file="changesets/20240310_03_insert_kompanija_data.xml" relativeToChangelogFile="true" />
-    <include file="changesets/20240310_04_insert_korisnik_data.xml" relativeToChangelogFile="true" />
+    <include file="changesets/20240309_01_create_city_table.xml" relativeToChangelogFile="true" />
+    <include file="changesets/20240309_02_create_country_table.xml" relativeToChangelogFile="true" />
+    <include file="changesets/20240309_03_create_company_table.xml" relativeToChangelogFile="true" />
+    <include file="changesets/20240309_04_create_user_table.xml" relativeToChangelogFile="true" />
+    <include file="changesets/20240309_05_add_city_foreign_key_to_user.xml" relativeToChangelogFile="true" />
+    <include file="changesets/20240309_06_add_country_foreign_key_to_user.xml" relativeToChangelogFile="true" />
+    <include file="changesets/20240309_07_company_foreign_key_to_user.xml" relativeToChangelogFile="true" />
+    <include file="changesets/20240309_08_insert_city_data.xml" relativeToChangelogFile="true" />
+    <include file="changesets/20240309_09_insert_country_data.xml" relativeToChangelogFile="true" />
+    <include file="changesets/20240309_10_insert_company_data.xml" relativeToChangelogFile="true" />
+    <include file="changesets/20240309_11_insert_user_data.xml" relativeToChangelogFile="true" />
 
 </databaseChangeLog>

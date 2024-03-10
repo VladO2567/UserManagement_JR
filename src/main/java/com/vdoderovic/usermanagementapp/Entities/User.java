@@ -47,7 +47,7 @@ public class User {
     @JsonBackReference
     private City city;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "zemlja_id")
+    @JoinColumn(name = "drzava_id")
     @JsonBackReference
     private Country country;
     @ManyToOne(fetch = FetchType.LAZY)

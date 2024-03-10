@@ -6,7 +6,10 @@
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.24.xsd">
 
     <changeSet id="20240310_04_insert_korisnik_data" author="VladoD">
-        <sqlFile path="../seeds/insert_korisnik_data.sql" relativeToChangelogFile="true"/>
+        <preConditions onFail="MARK_RAN" onSqlOutput="IGNORE">
+            <rowCount tableName="korisnik" expectedRows="0" />
+        </preConditions>
+        <sqlFile path="../seeds/insert_user_data.sql" relativeToChangelogFile="true"/>
     </changeSet>
 
 </databaseChangeLog>

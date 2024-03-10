@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.24.xsd">
+
+    <changeSet id="20240309_06_add_country_foreign_key_to_user" author="VladoD">
+        <preConditions onFail="MARK_RAN" onSqlOutput="IGNORE">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="fk_korisnik_drzava_id" />
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseTableName="korisnik" baseColumnNames="drzava_id"
+                                 constraintName="fk_korisnik_drzava_id"
+                                 referencedTableName="drzava"
+                                 referencedColumnNames="id" onUpdate="RESTRICT" onDelete="RESTRICT" validate="true" />
+    </changeSet>
+</databaseChangeLog>

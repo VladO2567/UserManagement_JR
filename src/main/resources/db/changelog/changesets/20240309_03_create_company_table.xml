@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.24.xsd">
+
+    <changeSet author="VladoD" id="20240309_03_create_company_table">
+        <preConditions onFail="MARK_RAN" onSqlOutput="IGNORE">
+            <not>
+                <tableExists tableName="kompanija"/>
+            </not>
+        </preConditions>
+        <createTable tableName="kompanija">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="naziv" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="broj_zaposlenih" type="INT"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

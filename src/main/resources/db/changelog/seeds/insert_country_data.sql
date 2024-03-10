@@ -1,4 +1,4 @@
-INSERT INTO `zemlja` (`id`, `naziv`, `populacija`) VALUES
+INSERT INTO `drzava` (`id`, `naziv`, `populacija`) VALUES
 (1,'France',67022000),
 (2,'Germany',83783942),
 (3,'Italy',60361000),

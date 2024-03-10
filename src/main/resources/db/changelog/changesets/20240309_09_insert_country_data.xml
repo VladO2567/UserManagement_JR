@@ -6,7 +6,10 @@
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.24.xsd">
 
     <changeSet id="20240310_02_insert_zemlja_data" author="VladoD">
-        <sqlFile path="../seeds/insert_zemlja_data.sql" relativeToChangelogFile="true"/>
+        <preConditions onFail="MARK_RAN" onSqlOutput="IGNORE">
+            <rowCount tableName="drzava" expectedRows="0" />
+        </preConditions>
+        <sqlFile path="../seeds/insert_country_data.sql" relativeToChangelogFile="true"/>
     </changeSet>
 
 </databaseChangeLog>

@@ -1,4 +1,4 @@
-INSERT INTO `korisnik` (`id`, `username`, `password`, `email`, `ime`, `prezime`, `datum_rodj`, `pol`, `grad_id`, `zemlja_id`, `kompanija_id`, `datum_kreiranja`, `aktivan`) VALUES
+INSERT INTO `korisnik` (`id`, `username`, `password`, `email`, `ime`, `prezime`, `datum_rodj`, `pol`, `grad_id`, `drzava_id`, `kompanija_id`, `datum_kreiranja`, `aktivan`) VALUES
 (1,'user1','pass123','user1@gmail.com','John','Doe','1980-01-01',0,1,1,1,'2023-08-05', 1),
 (2,'user2','pass123','user2@gmail.com','Jane','Smith','1985-05-05',1,2,2,2,'2023-08-05', 0),
 (3,'user3','pass123','user3@gmail.com','Alice','Johnson','1990-09-09',0,3,3,4,'2023-08-05', 1),

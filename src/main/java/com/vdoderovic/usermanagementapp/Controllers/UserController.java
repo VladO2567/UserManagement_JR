@@ -4,7 +4,6 @@ import com.vdoderovic.usermanagementapp.DTO.User.command.UserCreateDTO;
 import com.vdoderovic.usermanagementapp.DTO.User.command.UserUpdateDTO;
 import com.vdoderovic.usermanagementapp.DTO.User.query.UserDTO;
 import com.vdoderovic.usermanagementapp.DTO.User.query.UserWCompDTO;
-import com.vdoderovic.usermanagementapp.Exceptions.UserExceptionDTO;
 import com.vdoderovic.usermanagementapp.Services.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
