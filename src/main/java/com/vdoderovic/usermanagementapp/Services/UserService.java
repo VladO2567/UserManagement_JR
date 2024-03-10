@@ -50,7 +50,7 @@ public class UserService {
     @Transactional
     public String softDelete(Integer id) {
         boolean exists = userRepository.existsById(id);
-        if(exists) userRepository.deleteById(id);
+        if(exists) userRepository.softDeleteById(id);
         return exists ? "User soft deleted." : "No user found with the provided id.";
     }
 

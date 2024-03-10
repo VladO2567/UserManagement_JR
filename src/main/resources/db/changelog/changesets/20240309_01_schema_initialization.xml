@@ -1,0 +1,106 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.24.xsd">
+    <changeSet author="VladoD" id="1710001271040-1">
+        <createTable tableName="grad">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="naziv" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="postanski_kod" type="VARCHAR(45)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="VladoD" id="1710001271040-2">
+        <createTable tableName="kompanija">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="naziv" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="broj_zaposlenih" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="VladoD" id="1710001271040-4">
+        <createTable tableName="zemlja">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="naziv" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="populacija" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="VladoD" id="1710001271040-3">
+        <createTable tableName="korisnik">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="username" type="VARCHAR(45)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="password" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(105)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ime" type="VARCHAR(75)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="prezime" type="VARCHAR(75)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="datum_rodj" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="pol" type="TINYINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="grad_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="zemlja_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="kompanija_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="datum_kreiranja" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="aktivan" type="BIT(1)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="VladoD" id="1710001271040-5">
+        <createIndex indexName="fk_korisnik_grad_id_idx" tableName="korisnik">
+            <column name="grad_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="VladoD" id="1710001271040-6">
+        <createIndex indexName="fk_korisnik_kompanija_id_idx" tableName="korisnik">
+            <column name="kompanija_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="VladoD" id="1710001271040-7">
+        <createIndex indexName="fk_korisnik_zemlja_id_idx" tableName="korisnik">
+            <column name="zemlja_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="VladoD" id="1710001271040-8">
+        <addForeignKeyConstraint baseColumnNames="grad_id" baseTableName="korisnik" constraintName="fk_korisnik_grad_id" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="grad" validate="true"/>
+    </changeSet>
+    <changeSet author="VladoD" id="1710001271040-9">
+        <addForeignKeyConstraint baseColumnNames="kompanija_id" baseTableName="korisnik" constraintName="fk_korisnik_kompanija_id" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="kompanija" validate="true"/>
+    </changeSet>
+    <changeSet author="VladoD" id="1710001271040-10">
+        <addForeignKeyConstraint baseColumnNames="zemlja_id" baseTableName="korisnik" constraintName="fk_korisnik_zemlja_id" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="zemlja" validate="true"/>
+    </changeSet>
+</databaseChangeLog>
