@@ -4,7 +4,9 @@ import com.vdoderovic.usermanagementapp.DTO.User.command.UserCreateDTO;
 import com.vdoderovic.usermanagementapp.DTO.User.command.UserUpdateDTO;
 import com.vdoderovic.usermanagementapp.DTO.User.query.UserDTO;
 import com.vdoderovic.usermanagementapp.DTO.User.query.UserWCompDTO;
+import com.vdoderovic.usermanagementapp.Exceptions.UserExceptionDTO;
 import com.vdoderovic.usermanagementapp.Services.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,13 +44,13 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> insert(@RequestBody UserCreateDTO userCreateDTO){
+    public ResponseEntity<Void> insert(@Valid @RequestBody UserCreateDTO userCreateDTO){
         userService.creteUser(userCreateDTO);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<String> update(@PathVariable Integer id, @RequestBody UserUpdateDTO userUpdateDTO){
+    public ResponseEntity<String> update(@PathVariable Integer id, @Valid @RequestBody UserUpdateDTO userUpdateDTO){
         String response = userService.updateUser(id, userUpdateDTO);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
