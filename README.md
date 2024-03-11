@@ -21,13 +21,17 @@ It's recommended to use IntelliJ IDEA to run this project.
 
 Make sure all dependencies in pom.xml file are ready.
 
+Run maven clean and compile Lifecycle methods.
+
+![mavencleanandcompile](https://github.com/VladO2567/UserManagement_JR/blob/master/src/main/resources/media/mavencleanandcmpl.png)
+
 Set username and password for your MySQL server in application.yml and liquibase.yml files.
 
 ![usandpassappyml](https://github.com/VladO2567/UserManagement_JR/blob/master/src/main/resources/media/usandpassappyml.png)
 
 ![usandpassliquiyml](https://github.com/VladO2567/UserManagement_JR/blob/master/src/main/resources/media/usandpassliquiyml.png)
 
-By running application empty usermanagement database schema will be created if it already doesn't exist.
+By running the application empty usermanagement database schema will be created if it already doesn't exist.
 
 ![datasourceurl](https://github.com/VladO2567/UserManagement_JR/blob/master/src/main/resources/media/datasourceurl.png)
 
@@ -111,7 +115,6 @@ or
 ```
 
 For Create User service complete information about the user needs to be provided.
-
 ## Author
 
 - Vlado Doderović [@VladO2567](https://github.com/VladO2567)
