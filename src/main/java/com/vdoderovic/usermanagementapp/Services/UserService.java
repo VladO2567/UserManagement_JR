@@ -6,6 +6,9 @@ import com.vdoderovic.usermanagementapp.DTO.User.query.UserDTO;
 import com.vdoderovic.usermanagementapp.DTO.User.query.UserWCompDTO;
 import com.vdoderovic.usermanagementapp.Entities.User;
 import com.vdoderovic.usermanagementapp.Mapper.UserMapper;
+import com.vdoderovic.usermanagementapp.Repositories.CityRepository;
+import com.vdoderovic.usermanagementapp.Repositories.CompanyRepository;
+import com.vdoderovic.usermanagementapp.Repositories.CountryRepository;
 import com.vdoderovic.usermanagementapp.Repositories.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +25,9 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final UserMapper userMapper;
+    private final CityRepository cityRepository;
+    private final CountryRepository countryRepository;
+    private final CompanyRepository companyRepository;
 
     public List<UserDTO> getAll() {
         return userMapper.toDTOList(userRepository.findAll());
@@ -43,8 +49,14 @@ public class UserService {
         return userMapper.toDTOList(userRepository.findAllByCreatedAt(date));
     }
 
-    public void creteUser(UserCreateDTO userCreateDTO) {
-        userRepository.save(userMapper.createDTOtoEntity(userCreateDTO));
+    public String creteUser(UserCreateDTO userCreateDTO) {
+        User user = userMapper.createDTOtoEntity(userCreateDTO);
+
+        String check = checkForeign(user);
+        if(!check.isBlank()) return check;
+
+        userRepository.save(user);
+        return "User created successfully.";
     }
 
     @Transactional
@@ -62,7 +74,8 @@ public class UserService {
 
     public String updateUser(Integer id, UserUpdateDTO userUpdateDTO) {
 
-        String resp = "No user found with the provided id. Created a new user.";
+        if(!userExists(id))
+            return "No user found with the provided id. Created a new user.";
 
         Optional<User> optionalUser = userRepository.findById(id);
         User user = userMapper.updateDTOtoEntity(userUpdateDTO);
@@ -80,15 +93,45 @@ public class UserService {
                     }
                 } catch (IllegalAccessException ignored) {}
             }
-            resp = "Updated user with the provided id.";
         }
 
-        try{
-            userRepository.save(user);
-        } catch (Exception e) {
-            resp = "No user found with the provided id. All fields my be set to create a new user.";
-        }
+        String check = checkForeign(user);
+        if(!check.isBlank()) return check;
 
-        return resp;
+        userRepository.save(user);
+        return "Updated user with the provided id.";
+    }
+
+    private String checkForeign(User user) {
+        boolean cityExists = cityExists(user.getCity().getId());
+        boolean countryExists = countryExists(user.getCountry().getId());
+        boolean companyExists = companyExists(user.getCompany().getId());
+
+        if(!cityExists)
+            return "City entity with cityId you provided doesn't exist.";
+
+        if(!countryExists)
+            return "Country entity with countryId you provided doesn't exist.";
+
+        if(!companyExists)
+            return "Company entity with companyId you provided doesn't exist.";
+
+        return "";
+    }
+
+    public boolean userExists(Integer userId) {
+        return userRepository.existsById(userId);
+    }
+
+    public boolean cityExists(Integer cityId) {
+        return cityRepository.existsById(cityId);
+    }
+
+    public boolean countryExists(Integer countryId) {
+        return countryRepository.existsById(countryId);
+    }
+
+    public boolean companyExists(Integer companyId) {
+        return companyRepository.existsById(companyId);
     }
 }
